@@ -1,0 +1,27 @@
+Linux的蓝牙
+linux蓝牙相关命令：
+hciconfig：up down 
+hcitool ：scan dev 
+rfcomm
+	sudo rfcomm bind /dev/rfcomm0 E0:A6:70:8C:A3:02绑定设备
+	sudo cat >/dev/rfcomm0  配对
+	sudo rfcomm release /dev/rfcomm0 解除绑定
+rfkill：启用和关闭无线设备的工具。
+bluetoothctl
+
+
+蓝牙服务：
+systemctl status bluetooth
+service bluetooth status
+/etc/init.d/bluetooth status
+
+协议栈
+blueZ  http://www.bluez.org/   Linux蓝牙协议栈
+
+如果是usb蓝牙设备，通过lsusb也可以看到该设备
+
+安装库支持：
+sudo apt-get install libbluetooth-dev
+
+bluez源码
+sudo apt-get install gcc libglib2.0-dev libdbus-1-dev libdbus-c++-dev libudev-dev libical-dev libreadline-dev

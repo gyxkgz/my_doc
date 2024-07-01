@@ -1,0 +1,27 @@
+连hc05：
+hcitool scan扫描蓝牙设备
+
+sudo rfcomm connect 1 <蓝牙地址>
+
+会在/dev/下产生rfcomm1设备
+
+手机：
+糊里糊涂连上了。现在不知道哪些步骤是有效的。都记下来慢慢研究吧。
+1、修改蓝牙服务
+sudo vi /etc/systemd/system/dbus-org.bluez.service
+添加如下修改
+ExecStart=/usr/lib/bluetooth/bluetoothd -C   //加了个-C
+ExecStartPost=/usr/bin/sdptool add SP	 //新加了这一行，添加SPP服务
+重启
+
+2、配对
+使用bluetoothctl工具，
+scan on   扫描设备
+pair <蓝牙地址>  配对
+
+（中间还有很多步骤，不知道哪些有用）
+ 
+3、连接
+sudo rfcomm watch hci0   
+然后手机点配对好的树莓派就可以连接了，树莓派会在/dev下新建rfcomm0设备。
+
